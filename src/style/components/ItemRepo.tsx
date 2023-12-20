@@ -2,6 +2,16 @@ import styled from "styled-components";
 
 export const ItemContainer = styled.div`
   width: 80%;
+  display: flex;
+  padding: 1.5rem;
+  font-family: "Opens sans", sans-serif;
+  gap: 2rem;
+  border-bottom: 1px solid #fafafa60;
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 32px;
+  }
 
   h3 {
     font-size: 32px;
@@ -18,11 +28,6 @@ export const ItemContainer = styled.div`
     color: #ff0000;
     margin-top: 20px;
   }
-
-  hr {
-    color: #fafafa60;
-    margin: 20px 0;
-  }
 `;
 
 interface Repo {
@@ -30,6 +35,8 @@ interface Repo {
   full_name?: string;
   html_url?: string;
   id: number;
+  owner?: object;
+  avatar_url?: string;
 }
 
 interface IItemRepo {
@@ -44,16 +51,18 @@ function ItemRepo({ repo, onHandleRemoveRepo }: IItemRepo) {
 
   return (
     <ItemContainer onClick={handleRemove}>
-      <h3>{repo.name}</h3>
-      <p>{repo.full_name}</p>
-      <a href={repo.html_url} rel="noreferrer" target="_blank">
-        Ver repositório
-      </a>
-      <br />
-      <a href="#" rel="noreferrer" className="remover">
-        Remover
-      </a>
-      <hr />
+      <img src={repo.owner.avatar_url} alt="avatar" />
+      <div>
+        <h3>{repo.name}</h3>
+        <p>{repo.full_name}</p>
+        <a href={repo.html_url} rel="noreferrer" target="_blank">
+          Ver repositório
+        </a>
+        <br />
+        <a href="#" rel="noreferrer" className="remover">
+          Remover
+        </a>
+      </div>
     </ItemContainer>
   );
 }

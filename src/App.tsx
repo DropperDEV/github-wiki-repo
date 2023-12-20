@@ -45,6 +45,8 @@ export default function App() {
     setRepos((prev: Repos[]) => prev.filter((repo) => repo.id !== id));
   };
 
+  console.log(repos)
+
   return (
     <Container>
       <img src="logoGh.png" width={72} height={72} alt="github logo" />
